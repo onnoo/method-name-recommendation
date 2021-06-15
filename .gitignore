@@ -2,3 +2,6 @@
 .vscode/
 *.pyc
 data/*.txt
+results.txt
+*.pickle
+checkpoint/

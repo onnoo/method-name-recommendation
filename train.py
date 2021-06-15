@@ -13,7 +13,7 @@ from model import MNire
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('skip', default=False, type=bool)
+    parser.add_argument('--skip', default=False, type=bool)
     args = parser.parse_args()
 
     ### load data
@@ -63,9 +63,9 @@ if __name__ == '__main__':
     model.compile(optimizer='adam', loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
     cp_callback = callbacks.ModelCheckpoint(filepath=params.MODEL_CHECKPOINT, save_weights_only=True, verbose=1)
-    es_callback = callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience = 2)
+    es_callback = callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience = 5)
     
-    if not args.skip:
+    if True:
         history = model.fit(x=[encoder_input_train, decoder_input_train],
                             y=decoder_target_train,
                             validation_data=([encoder_input_valid, decoder_input_valid], decoder_target_valid),

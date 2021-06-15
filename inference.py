@@ -31,9 +31,9 @@ if __name__ == '__main__':
 
     for idx, (x, y) in enumerate(zip(x_test, y_test)):
         pred = model(x_test[idx:idx+1]).numpy()
-        pred = tokenizer.sequences_to_texts(pred)
+        pred = tokenizer.sequences_to_texts(pred)[0].rstrip()
         
-        result = f'{y}, {pred[0]}\n'
+        result = f'{y},{pred}\n'
         results.append(result)
 
         if idx > 1000:
